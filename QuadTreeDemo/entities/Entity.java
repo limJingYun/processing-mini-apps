@@ -73,7 +73,6 @@ public abstract class Entity {
 		centerY = y + height / 2;
 	}
 	public boolean collidesWith(Entity other){
-//		return (((other.x>this.x&&other.x<this.x+this.width)||(other.x+other.width>this.x&&other.x+other.width<this.x+this.width))&&((other.y>this.y&&other.y<this.y+this.height)||(other.y+other.height>this.y&&other.y+other.height<this.y+this.height)));
 		return (!(other.x>this.x+this.width||other.x+other.width<this.x ||other.y>this.y+this.height ||other.y+other.height<this.y));
 	}
 

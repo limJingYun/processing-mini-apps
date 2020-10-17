@@ -22,7 +22,7 @@ public class QuadTree {
 	 */
 	public QuadTree(int pLevel, Entity pBounds) {
 		level = pLevel;
-		objects = new ArrayList<Entity>();
+		objects = new ArrayList<>();
 		bounds = pBounds;
 		nodes = new QuadTree[4];
 
@@ -32,7 +32,7 @@ public class QuadTree {
 
 	public QuadTree(int pLevel, Entity pBounds, int maxObjects, int maxLevels) {
 		level = pLevel;
-		objects = new ArrayList<Entity>();
+		objects = new ArrayList<>();
 		bounds = pBounds;
 		nodes = new QuadTree[4];
 
@@ -183,7 +183,7 @@ public class QuadTree {
 	}
 
 	public List<Entity> retrieve(Entity pRect) {
-		List<Entity> returnObjects = new ArrayList<Entity>();
+		List<Entity> returnObjects = new ArrayList<>();
 		int index = getIndex(pRect);
 		if (index != -1 && nodes[0] != null) {
 			nodes[index].retrieve(returnObjects, pRect);
@@ -195,7 +195,7 @@ public class QuadTree {
 	}
 
 	public List<Entity> retrieve(double x, double y) {
-		List<Entity> returnObjects = new ArrayList<Entity>();
+		List<Entity> returnObjects = new ArrayList<>();
 		int index = getIndex(x, y);
 		if (index != -1 && nodes[0] != null) {
 			nodes[index].retrieve(returnObjects, x, y);
@@ -218,10 +218,7 @@ public class QuadTree {
 	}
 
 	public boolean hasChildren() {
-		if (level < maxLevels && nodes[0] != null) {
-			return true;
-		}
-		return false;
+		return (level < maxLevels && nodes[0] != null);
 	}
 
 	public QuadTree[] getChildren() {
