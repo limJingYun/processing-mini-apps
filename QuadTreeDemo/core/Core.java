@@ -174,31 +174,43 @@ public class Core extends PApplet {
 
     @Override
     public void mousePressed() {
-        println(mouseButton);
+        println("Mouse Button \t"+ mouseButton);
     }
 
     @Override
     public void keyPressed() {
-        println(keyCode);
+        println("Key Code: \t"+keyCode);
 
-        // R
-        if (keyCode == 82) {
-            objects.clear();
-            objectsNum = 0;
+        switch (keyCode) {
+            case 82: //R
+                objects.clear();
+                objectsNum = 0;
+                break;
+            case 69: //E
+                int scale = rng.nextInt(3) + 3;
+                int w = rng.nextInt((int) (WINDOW_WIDTH / (Math.pow(2, scale))));
+                int h = rng.nextInt((int) (WINDOW_HEIGHT / (Math.pow(2, scale))));
+                int x = rng.nextInt(WINDOW_WIDTH - w);
+                int y = rng.nextInt(WINDOW_HEIGHT - h);
+                Rectangle r = new Rectangle(x, y, w, h);
+                r.setColor(100);
+                objects.add(r);
+                objectsNum++;
+                break;
+            case 75: //K
+                println(objects.size());
+                println(objects.get(0).)
+                println(quadTree.getBounds());
+            // TODO: moving sprite or ligthing up areas of screen
+
+            // https://processing.org/examples/sequential.html
+            // get random quadrant from QuadTree then change color  of that
+            // https://processing.org/examples/pixelarray.
+
+            // building in blur function apply matrix to rotate it
+            default: break;
         }
 
-        // E
-        if (keyCode == 69) {
-            int scale = rng.nextInt(3) + 3;
-            int w = rng.nextInt((int) (WINDOW_WIDTH / (Math.pow(2, scale))));
-            int h = rng.nextInt((int) (WINDOW_HEIGHT / (Math.pow(2, scale))));
-            int x = rng.nextInt(WINDOW_WIDTH - w);
-            int y = rng.nextInt(WINDOW_HEIGHT - h);
-            Rectangle r = new Rectangle(x, y, w, h);
-            r.setColor(100);
-            objects.add(r);
-            objectsNum++;
-        }
     }
 
 
