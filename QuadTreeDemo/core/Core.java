@@ -4,6 +4,7 @@ import QuadTreeDemo.entities.Entity;
 import QuadTreeDemo.entities.Rectangle;
 import QuadTreeDemo.util.QuadTree;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Core extends PApplet {
     private boolean drawingUserRect;
     private double userX;
     private double userY;
+    private Animation duckAnimation;
 
     @Override
     public void setup() {
@@ -45,7 +47,8 @@ public class Core extends PApplet {
             objects.add(r);
             quadTree.insert(objects.get(i));
         }
-
+        frameRate(24);
+        duckAnimation = new Animation("duck", 38);
         noStroke();
 
     }
@@ -197,10 +200,8 @@ public class Core extends PApplet {
                 objects.add(r);
                 objectsNum++;
                 break;
-            case 75: //K
-                println(objects.size());
-                println(objects.get(0).)
-                println(quadTree.getBounds());
+            case 68: //K
+                duckAnimation.display(0+(WINDOW_WIDTH/2)-(duckAnimation.getWidth()/2), 0+(WINDOW_HEIGHT/2)-(duckAnimation.getHeight()/2));
             // TODO: moving sprite or ligthing up areas of screen
 
             // https://processing.org/examples/sequential.html
@@ -226,6 +227,36 @@ public class Core extends PApplet {
     @Override
     public void settings() {
         size(WINDOW_WIDTH, WINDOW_HEIGHT);
+    }
+
+    class Animation {
+        PImage[] images;
+        int imageCount;
+        int frame;
+
+        Animation(String imagePrefix, int count) {
+            imageCount = count;
+            images = new PImage[imageCount];
+
+            for (int i = 0; i < imageCount; i++) {
+                // Use nf() to number format 'i' into four digits
+                String filename = dataPath("")+"\\"+imagePrefix + nf(i, 4) + ".png";
+                images[i] = loadImage(filename);
+            }
+        }
+
+        void display(float xpos, float ypos) {
+            frame = (frame+1) % imageCount;
+            image(images[frame], xpos, ypos);
+        }
+
+        int getWidth() {
+            return images[0].width;
+        }
+
+        int getHeight() {
+            return images[0].height;
+        }
     }
 
 }
