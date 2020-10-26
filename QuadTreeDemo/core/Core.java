@@ -48,7 +48,7 @@ public class Core extends PApplet {
             quadTree.insert(objects.get(i));
         }
         frameRate(24);
-        duckAnimation = new Animation("duck", 38);
+        duckAnimation = new Animation("duck", 30);
         noStroke();
 
     }
@@ -200,15 +200,9 @@ public class Core extends PApplet {
                 objects.add(r);
                 objectsNum++;
                 break;
-            case 68: //K
+            case 68: //D
                 duckAnimation.display(0+(WINDOW_WIDTH/2)-(duckAnimation.getWidth()/2), 0+(WINDOW_HEIGHT/2)-(duckAnimation.getHeight()/2));
-            // TODO: moving sprite or ligthing up areas of screen
-
-            // https://processing.org/examples/sequential.html
-            // get random quadrant from QuadTree then change color  of that
-            // https://processing.org/examples/pixelarray.
-
-            // building in blur function apply matrix to rotate it
+                break;
             default: break;
         }
 
